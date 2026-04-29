@@ -1,0 +1,27 @@
+{
+  "name": "lando-drupal-tools",
+  "version": "1.0.0",
+  "description": "Lando plugin providing Drupal developer tools for local and remote environment management",
+  "main": "index.js",
+  "keywords": [
+    "lando",
+    "drupal",
+    "plugin",
+    "drupal-tools",
+    "drush",
+    "devtools"
+  ],
+  "author": "Kevin Gautreau <contact@kgaut.net>",
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kgaut/lando-drupal-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kgaut/lando-drupal-tools/issues"
+  },
+  "homepage": "https://github.com/kgaut/lando-drupal-tools#readme",
+  "engines": {
+    "node": ">=16"
+  }
+}
