@@ -21,6 +21,9 @@
     "url": "https://github.com/kgaut/lando-drupal-tools/issues"
   },
   "homepage": "https://github.com/kgaut/lando-drupal-tools#readme",
+  "scripts": {
+    "test": "node test/tooling.test.js"
+  },
   "engines": {
     "node": ">=16"
   }

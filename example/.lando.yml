@@ -1,0 +1,27 @@
+name: my-drupal-site
+recipe: drupal11
+
+config:
+  php: '8.3'
+  webroot: web
+
+# ── lando-drupal-tools configuration ─────────────────────────────────────────
+drupal_tools:
+  local_db_path: db
+  local_tmp_path: web/sites/default/files/tmp
+
+  prod:
+    user: deploy
+    host: my-server.example.com
+    # port: 22         # optional, default 22
+    path: /var/www/my-drupal-site
+    # drush: vendor/bin/drush  # optional
+    url: my-drupal-site.com
+    db_path: db
+
+  preprod:
+    user: deploy
+    host: preprod.my-server.example.com
+    path: /var/www/my-drupal-site-preprod
+    url: preprod.my-drupal-site.com
+    db_path: db
