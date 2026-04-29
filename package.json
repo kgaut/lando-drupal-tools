@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/kgaut/lando-drupal-tools#readme",
   "scripts": {
-    "test": "node test/tooling.test.js"
+    "test": "node test/env.test.js && node test/tooling.test.js"
   },
   "engines": {
     "node": ">=16"

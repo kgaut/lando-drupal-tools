@@ -82,6 +82,43 @@ Remote commands (`db-prod-*`, `db-preprod-*`, `ssh-prod`, `ssh-preprod`) are onl
 
 ---
 
+## .env fallback
+
+The plugin also reads the project's `.env` file and maps the original [drupal-makefile](https://github.com/kgaut/drupal-makefile) variable names to the plugin config.  
+This means **existing projects can work without any `drupal_tools` block in `.lando.yml`** as long as the `.env` file is populated.
+
+Values defined in `.lando.yml` always take precedence over `.env`. Individual keys can be overridden without duplicating the whole config.
+
+| .env variable | drupal_tools key |
+|---------------|-----------------|
+| `LOCAL_DB_PATH` | `local_db_path` |
+| `LOCAL_TMP_PATH` | `local_tmp_path` |
+| `PROD_USER` | `prod.user` |
+| `PROD_HOST` | `prod.host` |
+| `PROD_PORT` | `prod.port` |
+| `PROD_PATH` | `prod.path` |
+| `PROD_DRUSH` | `prod.drush` |
+| `PROD_URL` | `prod.url` |
+| `PROD_DB_PATH` | `prod.db_path` |
+| `PREPROD_USER` | `preprod.user` |
+| `PREPROD_HOST` | `preprod.host` |
+| `PREPROD_PORT` | `preprod.port` |
+| `PREPROD_PATH` | `preprod.path` |
+| `PREPROD_DRUSH` | `preprod.drush` |
+| `PREPROD_URL` | `preprod.url` |
+| `PREPROD_DB_PATH` | `preprod.db_path` |
+
+**Example** — override only the SSH port in `.lando.yml`, keep everything else from `.env`:
+
+```yaml
+# .env already has PROD_USER, PROD_HOST, PROD_PATH, etc.
+drupal_tools:
+  prod:
+    port: 2222
+```
+
+---
+
 ## SSH keys
 
 Lando mounts your local `~/.ssh` directory into the `appserver` container, so SSH / SCP commands work out of the box.  
