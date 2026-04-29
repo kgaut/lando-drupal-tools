@@ -50,7 +50,17 @@ Configuration can come from two sources (both optional, merged together — `.la
 - A `drupal_tools` block in `.lando.yml`
 - Environment variables in the project's `.env` file (see [.env fallback](#env-fallback))
 
-Example `drupal_tools` block in `.lando.yml`:
+> **Recommended practice** — SSH credentials and remote server details are developer-specific and should not be committed.  
+> Put the `drupal_tools` block in `.lando.local.yml` instead of `.lando.yml`, and add it to `.gitignore`:
+>
+> ```bash
+> echo '.lando.local.yml' >> .gitignore
+> ```
+>
+> Lando automatically merges `.lando.local.yml` on top of `.lando.yml`, so it works without any extra configuration.  
+> Commit a `.lando.yml` with only the shared project settings, and let each developer maintain their own `.lando.local.yml`.
+
+Example `drupal_tools` block in `.lando.local.yml`:
 
 ```yaml
 drupal_tools:
