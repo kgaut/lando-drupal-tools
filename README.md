@@ -15,7 +15,7 @@ Commands cover local database management, remote environment synchronisation (pr
 git clone https://github.com/kgaut/lando-drupal-tools.git ~/.lando/plugins/lando-drupal-tools
 ```
 
-The plugin is automatically loaded for every project that has a `drupal_tools` section in its `.lando.yml`.
+The plugin is automatically loaded for every project. It activates when it finds configuration either in a `drupal_tools` block in `.lando.yml` or in the project's `.env` file (see [.env fallback](#env-fallback)).
 
 ### Per-project
 
@@ -45,7 +45,12 @@ plugins:
 
 ## Configuration
 
-Add a `drupal_tools` block to your `.lando.yml`:
+Configuration can come from two sources (both optional, merged together — `.lando.yml` wins):
+
+- A `drupal_tools` block in `.lando.yml`
+- Environment variables in the project's `.env` file (see [.env fallback](#env-fallback))
+
+Example `drupal_tools` block in `.lando.yml`:
 
 ```yaml
 drupal_tools:
