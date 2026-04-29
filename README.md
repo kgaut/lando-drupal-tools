@@ -9,13 +9,37 @@ Commands cover local database management, remote environment synchronisation (pr
 
 ## Installation
 
-Clone the repository into the Lando global plugins directory:
+### Global (recommended — available for all projects)
 
 ```bash
 git clone https://github.com/kgaut/lando-drupal-tools.git ~/.lando/plugins/lando-drupal-tools
 ```
 
-The plugin is picked up automatically by Lando for every project that has a `drupal_tools` section in its `.lando.yml`.
+The plugin is automatically loaded for every project that has a `drupal_tools` section in its `.lando.yml`.
+
+### Per-project
+
+If you prefer to ship the plugin with a specific project, add it under the `.lando/plugins/` directory and reference it in `.lando.yml`:
+
+```yaml
+# .lando.yml
+plugins:
+  lando-drupal-tools: /path/to/lando-drupal-tools
+```
+
+Or clone it directly into the project's plugin directory:
+
+```bash
+mkdir -p .lando/plugins
+git clone https://github.com/kgaut/lando-drupal-tools.git .lando/plugins/lando-drupal-tools
+```
+
+Then reference it in `.lando.yml`:
+
+```yaml
+plugins:
+  lando-drupal-tools: ./.lando/plugins/lando-drupal-tools
+```
 
 ---
 
