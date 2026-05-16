@@ -9,25 +9,30 @@ Commands cover local database management, remote environment synchronisation (pr
 
 ## Installation
 
-### Global (recommended — available for all projects)
+### Per-project (recommended)
+
+Clone the plugin somewhere on your machine (once):
 
 ```bash
 git clone https://github.com/kgaut/lando-drupal-tools.git ~/.lando/plugins/lando-drupal-tools
 ```
 
-The plugin is automatically loaded for every project. It activates when it finds configuration either in a `drupal_tools` block in `.lando.yml` or in the project's `.env` file (see [.env fallback](#env-fallback)).
-
-### Per-project
-
-If you prefer to ship the plugin with a specific project, add it under the `.lando/plugins/` directory and reference it in `.lando.yml`:
+Then reference it in each project's `.lando.local.yml` (add this file to `.gitignore`):
 
 ```yaml
-# .lando.yml
+# .lando.local.yml
 plugins:
-  lando-drupal-tools: /path/to/lando-drupal-tools
+  lando-drupal-tools: ~/.lando/plugins/lando-drupal-tools
+
+drupal_tools:
+  # ... your config here
 ```
 
-Or clone it directly into the project's plugin directory:
+> **Why not global?** Lando v3.21+ only auto-loads `@lando`-scoped plugins from `~/.lando/plugins/`. A bare `git clone` into that directory is no longer picked up automatically. The `plugins:` key in `.lando.local.yml` is the reliable cross-version way to load a third-party plugin.
+
+### Shipped with the project
+
+If you want to commit the plugin alongside a specific project:
 
 ```bash
 mkdir -p .lando/plugins
@@ -51,18 +56,20 @@ Configuration can come from two sources (both optional, merged together — `.la
 - Environment variables in the project's `.env` file (see [.env fallback](#env-fallback))
 
 > **Recommended practice** — SSH credentials and remote server details are developer-specific and should not be committed.  
-> Put the `drupal_tools` block in `.lando.local.yml` instead of `.lando.yml`, and add it to `.gitignore`:
+> Put both the `plugins:` reference and the `drupal_tools` block in `.lando.local.yml`, and add it to `.gitignore`:
 >
 > ```bash
 > echo '.lando.local.yml' >> .gitignore
 > ```
 >
-> Lando automatically merges `.lando.local.yml` on top of `.lando.yml`, so it works without any extra configuration.  
 > Commit a `.lando.yml` with only the shared project settings, and let each developer maintain their own `.lando.local.yml`.
 
-Example `drupal_tools` block in `.lando.local.yml`:
+Example `.lando.local.yml`:
 
 ```yaml
+plugins:
+  lando-drupal-tools: ~/.lando/plugins/lando-drupal-tools
+
 drupal_tools:
   # Local path (relative to project root) where DB dumps are stored.
   # Default: db
